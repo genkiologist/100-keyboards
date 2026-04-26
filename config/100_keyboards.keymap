@@ -46,7 +46,7 @@
             #binding-cells = <0>;
             bindings = <&macro_release &kp LALT>, <&macro_press &kp LWIN>;
         };
-        alt: alt_macro {
+        alt_macro: alt_macro {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&macro_release &kp LWIN>, <&macro_press &kp LALT>;
@@ -119,7 +119,7 @@
         Malt: M_alt {
             compatible = "zmk,behavior-hold-tap";
             label = "MALT";
-            bindings = <&kp>, <&alt>;
+            bindings = <&kp>, <&alt_macro>;
             #binding-cells = <2>;
             tapping-term-ms = <200>;
         };
