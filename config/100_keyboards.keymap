@@ -58,7 +58,7 @@
         lm: lt_with_mouse {
             compatible = "zmk,behavior-hold-tap";
             label = "LAYER_TAP_MOUSE";
-            bindings = <&mo>, <&mkp MB3>;
+            bindings = <&mo>, <&mkp>; /* ★修正箇所: MB3を削除し、純粋な参照だけにしました */
             #binding-cells = <2>;
             tapping-term-ms = <200>;
         };
@@ -152,10 +152,11 @@
 
         Mouse_layer {
             bindings = <
-&trans &trans &trans &trans &trans   &trans  &trans  &trans  &trans  &trans  &trans &trans &trans &trans &trans   &trans  &trans    &trans   &trans       &trans  &trans &trans &trans &trans &trans
-&trans &trans &trans &trans &trans   &trans  &trans  &trans  &trans  &trans  &trans &trans &trans &trans &trans   &trans  &mkp MB1  &lm 4 0  &RightClick  &trans  &trans &trans &trans &trans &trans
-&trans &trans &trans &trans &trans   &trans  &trans  &trans  &trans  &trans  &trans &trans &trans &trans &trans   &trans  &trans    &trans   &trans       &trans  &trans &trans &trans &trans &trans
-&trans &trans &trans &trans &trans   &trans  &trans  &trans  &trans  &trans  &trans &trans &trans &trans &trans   &trans  &trans    &trans   &trans       &trans  &trans &trans &trans &trans &trans
+&trans &trans &trans &trans &trans   &trans  &trans  &trans  &trans  &trans  &trans &trans &trans &trans &trans   &trans  &trans    &trans     &trans       &trans  &trans &trans &trans &trans &trans
+/* ★修正箇所: &lm 4 0 だったものを、正しく &lm 4 MB3 に書き換えました */
+&trans &trans &trans &trans &trans   &trans  &trans  &trans  &trans  &trans  &trans &trans &trans &trans &trans   &trans  &mkp MB1  &lm 4 MB3  &RightClick  &trans  &trans &trans &trans &trans &trans
+&trans &trans &trans &trans &trans   &trans  &trans  &trans  &trans  &trans  &trans &trans &trans &trans &trans   &trans  &trans    &trans     &trans       &trans  &trans &trans &trans &trans &trans
+&trans &trans &trans &trans &trans   &trans  &trans  &trans  &trans  &trans  &trans &trans &trans &trans &trans   &trans  &trans    &trans     &trans       &trans  &trans &trans &trans &trans &trans
             >;
             sensor-bindings = <&inc_dec_kp K_SCROLL_UP K_SCROLL_DOWN>;
         };
