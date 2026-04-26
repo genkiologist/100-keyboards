@@ -18,3 +18,14 @@
 #     artifact-name: corne_left_with_studio
 #
 ---
+include:
+  - board: bmp_boost
+    shield: 100_keyboards_central
+  - board: bmp_boost
+    shield: 100_keyboards_peri_1
+  - board: bmp_boost
+    shield: 100_keyboards_peri_2
+  - board: bmp_boost
+    shield: 100_keyboards_peri_3
+  - board: bmp_boost
+    shield: 100_keyboards_peri_4
