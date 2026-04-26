@@ -1,0 +1,14 @@
+config SHIELD_100_KEYBOARDS_CENTRAL
+    def_bool $(shields_list_contains,100_keyboards_central)
+
+config SHIELD_100_KEYBOARDS_PERI_1
+    def_bool $(shields_list_contains,100_keyboards_peri_1)
+
+config SHIELD_100_KEYBOARDS_PERI_2
+    def_bool $(shields_list_contains,100_keyboards_peri_2)
+
+config SHIELD_100_KEYBOARDS_PERI_3
+    def_bool $(shields_list_contains,100_keyboards_peri_3)
+
+config SHIELD_100_KEYBOARDS_PERI_4
+    def_bool $(shields_list_contains,100_keyboards_peri_4)
