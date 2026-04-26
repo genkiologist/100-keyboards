@@ -1,6 +1,7 @@
 #include <dt-bindings/zmk/matrix_transform.h>
 #include <zephyr/dt-bindings/gpio/nordic-nrf-gpio.h>
-#include <dt-bindings/zmk/input_transform.h> // ★軸の定数（INPUT_REL_X等）のために必要
+#include <dt-bindings/zmk/input_transform.h>
+#include <zephyr/dt-bindings/input/input-event-codes.h> // ★必須：入力イベントの種類（INPUT_EV_RELなど）を定義
 #include <physical_layouts.dtsi>
 
 #define KP(x,y) <&key_physical_attrs 100 100 x y 0 0 0>
@@ -95,10 +96,11 @@
         device = <&trackball>;
     };
 
-    /* --- ★ここを修正: 必須プロパティ(x-codes/y-codes)を追加しました --- */
+    /* --- ZMK Input Processors (ZIP) --- */
     zip_xy_transform: zip_xy_transform {
         compatible = "zmk,input-processor-transform";
         #input-processor-cells = <1>;
+        type = <INPUT_EV_REL>;
         x-codes = <INPUT_REL_X>;
         y-codes = <INPUT_REL_Y>;
     };
@@ -106,6 +108,7 @@
     zip_xy_to_scroll_mapper: zip_xy_to_scroll_mapper {
         compatible = "zmk,input-processor-xy-to-scroll-mapper";
         #input-processor-cells = <0>;
+        type = <INPUT_EV_REL>;     // ★追加
         x-codes = <INPUT_REL_X>;
         y-codes = <INPUT_REL_Y>;
     };
@@ -113,7 +116,9 @@
     zip_scroll_scaler: zip_scroll_scaler {
         compatible = "zmk,input-processor-scaler";
         #input-processor-cells = <2>;
+        type = <INPUT_EV_REL>;     // ★エラー箇所: 追加しました！
         codes = <INPUT_REL_WHEEL INPUT_REL_HWHEEL>;
+        track-remainders;          // ★追加: スクロールの残存値を保持して滑らかにする
     };
 };
 
