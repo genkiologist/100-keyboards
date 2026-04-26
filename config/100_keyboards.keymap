@@ -4,10 +4,10 @@
 #include <dt-bindings/zmk/pointing.h>
 #include <dt-bindings/zmk/input_transform.h>
 
-/* トラックボールの挙動設定 (公式ZMK 4.1.0) */
+/* トラックボールの設定 (公式ZMK 4.1.0) */
 &trackball_listener {
     input-processors = <
-        /* XY軸の反転 */
+        /* 軸の反転。DTSI側の #input-processor-cells = <1> に対応 */
         &zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)
     >;
 };
