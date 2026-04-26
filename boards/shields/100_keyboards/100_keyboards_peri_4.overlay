@@ -1,5 +1,5 @@
 #include "100_keyboards.dtsi"
 
-&kscan0 {
+&default_transform {
     col-offset = <20>; // 自分のCOL0を、全体のCOL20としてセントラルに送信
 };
