@@ -5,7 +5,7 @@
     chosen {
         zmk,kscan = &kscan0;
         zmk,matrix-transform = &default_transform;
-        zmk,battery = &non_lipo_battery; // ←これを追加
+        zmk,battery = &non_lipo_battery;
     };
 
     // =========================================================
@@ -78,7 +78,19 @@
     };
 
     // =========================================================
-    // 3. トラックボールのリスナー
+    // 3. 乾電池のバッテリー計測機能
+    // =========================================================
+    vbatt: vbatt {
+        status = "disabled";
+    };
+    
+    non_lipo_battery: non_lipo_battery {
+        compatible = "zmk,non-lipo-battery";
+        io-channels = <&adc 4>; 
+    };
+
+    // =========================================================
+    // 4. トラックボールのリスナー
     // =========================================================
     trackball_listener: trackball_listener {
         compatible = "zmk,input-listener";
@@ -87,7 +99,7 @@
 };
 
 // =========================================================
-// 4. トラックボール (SPI通信) のハードウェア定義
+// 5. トラックボール (SPI通信) のハードウェア定義
 // =========================================================
 &pinctrl {
     spi0_default: spi0_default {
@@ -122,15 +134,5 @@
         spi-max-frequency = <2000000>;
         irq-gpios = <&gpio0 19 GPIO_ACTIVE_LOW>;
         power-gpios = <&gpio0 8 (GPIO_ACTIVE_HIGH | NRF_GPIO_DRIVE_H1)>;
-    };
-// =========================================================
-    // 5. 乾電池のバッテリー計測機能
-    // =========================================================
-    vbatt: vbatt {
-        status = "disabled";
-    };
-    non_lipo_battery: non_lipo_battery {
-        compatible = "zmk,non-lipo-battery";
-        io-channels = <&adc 4>; 
     };
 };
