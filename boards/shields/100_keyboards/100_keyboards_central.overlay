@@ -1,1 +1,5 @@
+#include "100_keyboards.dtsi"
 
+&kscan0 {
+    col-offset = <15>; // 自分のCOL0を、全体のCOL15としてセントラルに送信
+};
