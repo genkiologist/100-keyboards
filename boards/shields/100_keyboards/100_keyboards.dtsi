@@ -1,5 +1,6 @@
 #include <dt-bindings/zmk/matrix_transform.h>
 #include <zephyr/dt-bindings/gpio/nordic-nrf-gpio.h>
+#include <dt-bindings/zmk/input_transform.h> // ★軸の定数（INPUT_REL_X等）のために必要
 #include <physical_layouts.dtsi>
 
 #define KP(x,y) <&key_physical_attrs 100 100 x y 0 0 0>
@@ -94,20 +95,25 @@
         device = <&trackball>;
     };
 
-    /* --- 新規追加: ZMK Input Processors (ZIP) のノードラベル定義 --- */
+    /* --- ★ここを修正: 必須プロパティ(x-codes/y-codes)を追加しました --- */
     zip_xy_transform: zip_xy_transform {
         compatible = "zmk,input-processor-transform";
         #input-processor-cells = <1>;
+        x-codes = <INPUT_REL_X>;
+        y-codes = <INPUT_REL_Y>;
     };
 
     zip_xy_to_scroll_mapper: zip_xy_to_scroll_mapper {
         compatible = "zmk,input-processor-xy-to-scroll-mapper";
         #input-processor-cells = <0>;
+        x-codes = <INPUT_REL_X>;
+        y-codes = <INPUT_REL_Y>;
     };
 
     zip_scroll_scaler: zip_scroll_scaler {
         compatible = "zmk,input-processor-scaler";
         #input-processor-cells = <2>;
+        codes = <INPUT_REL_WHEEL INPUT_REL_HWHEEL>;
     };
 };
 
