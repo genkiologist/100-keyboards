@@ -9,7 +9,7 @@ manifest:
       remote: zmkfirmware
       revision: main
       import: app/west.yml
-    - name: zmk-component-bmp-boost      # ここでbmp_boostのモジュールを追加
+    - name: zmk-component-bmp-boost
       remote: sekigon-gonnoc
       revision: master
       import: west.yml
