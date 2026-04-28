@@ -1,0 +1,17 @@
+file_format: "1"
+id: 100_keyboards
+name: 100_keyboards
+type: shield
+features:
+  - keys
+  - studio
+  - encoder
+outputs:
+  - usb
+  - ble
+siblings:
+  - 100_keyboards_central
+  - 100_keyboards_peri_1
+  - 100_keyboards_peri_2
+  - 100_keyboards_peri_3
+  - 100_keyboards_peri_4
