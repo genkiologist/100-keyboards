@@ -3,3 +3,26 @@
 &default_transform {
     col-offset = <15>; // 自分のCOL0を、全体のCOL15としてセントラルに送信
 };
+// 100_keyboards_central.overlay の追記内容
+/ {
+    split_inputs {
+        #address-cells = <1>;
+        #size-cells = <0>;
+
+        // 子機から送られてくるトラックボールデータの「受け皿」
+        trackball_split: trackball_split@0 {
+            compatible = "zmk,input-split";
+            reg = <0>;
+        };
+    };
+
+    // 受け皿に入ったデータをZMKにマウス操作として認識させるリスナー
+    trackball_split_listener: trackball_split_listener {
+        compatible = "zmk,input-listener";
+        device = <&trackball_split>;
+        status = "okay";
+        
+        // ※ もしカーソルの動く向きが逆だった場合は、以下のコメントアウト（//）を外して有効化してください
+        // input-processors = <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>;
+    };
+};
